@@ -39,4 +39,10 @@ public class Info{
     public void setbValue(BigDecimal bValue) {
         this.bValue = bValue;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Info info = (Info)obj;
+        return (this.id == info.id && this.name.equals(info.name) && this.dValue == info.dValue && this.bValue.equals(info.bValue));
+    }
 }
