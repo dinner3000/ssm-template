@@ -43,6 +43,14 @@
                 </includes>
                 <filtering>false</filtering>
             </resource>
+            <resource>
+                <directory>src/test/resources</directory>
+                <includes>
+                    <include>*.properties</include>
+                    <include>*.xml</include>
+                    <include>*.sql</include>
+                </includes>
+            </resource>
         </resources>
         <plugins>
             <plugin>

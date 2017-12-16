@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 import java.nio.charset.Charset;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:spring.xml"})
+@ContextConfiguration(locations={"classpath:spring-test.xml"})
 public class BaseTest {
     @Autowired
     protected DataSource dataSource;
@@ -29,7 +29,7 @@ public class BaseTest {
             ScriptRunner runner = new ScriptRunner(dataSource.getConnection());
             Resources.setCharset(Charset.forName("UTF-8"));
             runner.setLogWriter(null);
-            runner.runScript(Resources.getResourceAsReader("init.sql"));
+            runner.runScript(Resources.getResourceAsReader("init-test.sql"));
             runner.closeConnection();
 
         } catch (Exception e) {
