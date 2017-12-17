@@ -1,6 +1,6 @@
-package com.dinner3000.generated.inf;
+package com.dinner3000.mybatis.generated.inf;
 
-import com.dinner3000.generated.model.List;
+import com.dinner3000.mybatis.generated.model.List;
 
 public interface ListMapper {
     int deleteByPrimaryKey(Integer id);

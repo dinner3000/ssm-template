@@ -19,16 +19,16 @@
                         userId="test" password="test"
                         driverClass="${jdbc.driver}" >
         </jdbcConnection>
-        <javaModelGenerator targetPackage="com.dinner3000.generated.model"
+        <javaModelGenerator targetPackage="com.dinner3000.generated.mybatis.model"
                             targetProject="src/main/java">
             <property name="enableSubPackages" value="false" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
-        <sqlMapGenerator targetPackage="com.dinner3000.generated.mapper"
+        <sqlMapGenerator targetPackage="com.dinner3000.generated.mybatis.mapper"
                          targetProject="src/main/java">
             <property name="enableSubPackages" value="false" />
         </sqlMapGenerator>
-        <javaClientGenerator targetPackage="com.dinner3000.generated.inf"
+        <javaClientGenerator targetPackage="com.dinner3000.generated.mybatis.inf"
                              targetProject="src/main/java" type="XMLMAPPER" />
         <table schema="test" tableName="list"
                enableCountByExample="false" enableUpdateByExample="false"

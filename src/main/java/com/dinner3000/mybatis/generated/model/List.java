@@ -1,4 +1,4 @@
-package com.dinner3000.generated.model;
+package com.dinner3000.mybatis.generated.model;
 
 public class List {
     private Integer id;

@@ -1,6 +1,6 @@
 package com.dinner3000.service;
 
-import com.dinner3000.generated.inf.ListMapper;
+import com.dinner3000.mybatis.generated.inf.ListMapper;
 import com.dinner3000.model.Info;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
