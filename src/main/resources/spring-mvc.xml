@@ -16,6 +16,8 @@
             http://www.springframework.org/schema/aop/spring-aop.xsd"
        default-lazy-init="true">
 
+    <context:component-scan base-package="com.dinner3000"/>
+
     <mvc:annotation-driven/>
 
     <mvc:view-controller path="/" view-name="index"/>
