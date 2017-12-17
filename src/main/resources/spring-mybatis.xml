@@ -11,7 +11,7 @@
     </bean>
 
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.dinner3000.generated.mybatis.inf" />
+        <property name="basePackage" value="com.dinner3000.mybatis.generated.inf" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
 

@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `test` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
-USE `test`;
+--CREATE DATABASE  IF NOT EXISTS `test` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
+--USE `test`;
 -- MySQL dump 10.13  Distrib 5.6.24, for osx10.8 (x86_64)
 --
 -- Host: 127.0.0.1    Database: test
@@ -26,21 +26,21 @@ DROP TABLE IF EXISTS `list`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `list` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+);
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `list`
 --
 
-LOCK TABLES `list` WRITE;
+--LOCK TABLES `list` WRITE;
 /*!40000 ALTER TABLE `list` DISABLE KEYS */;
 INSERT INTO `list` VALUES (1,'a'),(2,'b'),(3,'c');
 /*!40000 ALTER TABLE `list` ENABLE KEYS */;
-UNLOCK TABLES;
+--UNLOCK TABLES;
 
 --
 -- Dumping events for database 'test'

@@ -12,15 +12,20 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.sql.DataSource;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.nio.charset.Charset;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:spring-test.xml"})
-public class BaseTest {
+public abstract class BaseTest {
     @Autowired
     protected DataSource dataSource;
 
 //    Logger logger = LoggerFactory.getLogger(getClass());
+
+    protected static Validator validator;
 
     @Before
     public void setUp() throws Exception {
@@ -31,6 +36,9 @@ public class BaseTest {
             runner.setLogWriter(null);
             runner.runScript(Resources.getResourceAsReader("init-test.sql"));
             runner.closeConnection();
+
+            ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+            validator = factory.getValidator();
 
         } catch (Exception e) {
             e.printStackTrace();
