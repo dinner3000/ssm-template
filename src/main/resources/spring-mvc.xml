@@ -18,7 +18,7 @@
 
     <context:component-scan base-package="com.dinner3000"/>
 
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven validator="validator"/>
 
     <mvc:view-controller path="/" view-name="index"/>
 
