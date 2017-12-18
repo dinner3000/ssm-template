@@ -1,22 +1,30 @@
 package com.dinner3000.springmvc.controller;
 
+import com.dinner3000.model.DefaultModel;
 import com.dinner3000.service.DefaultService;
+import com.dinner3000.springmvc.model.AjaxResponse;
 import com.dinner3000.springmvc.model.DefaultForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
+import javax.validation.Validator;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/")
-public class DefaultController {
+public class DefaultController extends BaseController{
 
     Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -24,29 +32,60 @@ public class DefaultController {
     private DefaultService defaultService;
 
     @RequestMapping("getList")
-    public @ResponseBody Object getList(){
+    @ResponseBody
+    public Object getList(){
         logger.info("###DefaultController - getList()");
         return defaultService.getList();
     }
 
     @RequestMapping("queryList")
-    public @ResponseBody Object queryList(){
+    @ResponseBody
+    public Object queryList(){
         logger.info("###DefaultController - queryList()");
         return defaultService.queryList();
     }
 
     @RequestMapping("getInfo")
-    public @ResponseBody Object getInfo(){
+    @ResponseBody
+    public Object getInfo(){
         logger.info("###DefaultController - getInfo()");
         return defaultService.getInfo();
     }
 
-    @RequestMapping(value = "submitForm")
-    public @ResponseBody Object submitForm(@Valid DefaultForm form, BindingResult result){
-        if(result.hasErrors()) {
-            return result;
+    @RequestMapping("submitForm1")
+    @ResponseBody
+    public Object submitForm1(@Valid DefaultForm form){
+        AjaxResponse response = new AjaxResponse();
+
+        DefaultModel model = DefaultModel.ConvertFromDefaultForm(form);
+        Set<ConstraintViolation<DefaultModel>> constraintViolations =
+                validator.validate( model );
+        if(constraintViolations.size()>0){
+            response.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+            response.setDesc(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
+            response.setData(constraintViolations.toString());
+        }else {
+            response.setData(model);
         }
-        return "success";
+        return response;
+    }
+
+    @RequestMapping("submitForm2")
+    @ResponseBody
+    public Object submitForm2(@Valid @RequestBody DefaultForm form){
+        AjaxResponse response = new AjaxResponse();
+
+        DefaultModel model = DefaultModel.ConvertFromDefaultForm(form);
+        Set<ConstraintViolation<DefaultModel>> constraintViolations =
+                validator.validate( model );
+        if(constraintViolations.size()>0){
+            response.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+            response.setDesc(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
+            response.setData(constraintViolations.toString());
+        }else {
+            response.setData(model);
+        }
+        return response;
     }
 
 }
