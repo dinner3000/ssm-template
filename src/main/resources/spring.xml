@@ -23,6 +23,7 @@
     <import resource="spring-transaction.xml"/>
     <import resource="spring-validator.xml"/>
     <import resource="spring-mybatis.xml"/>
+    <!--<import resource="spring-shiro.xml"/>-->
     <import resource="spring-aop.xml"/>
 
     <context:component-scan base-package="com.dinner3000"/>
