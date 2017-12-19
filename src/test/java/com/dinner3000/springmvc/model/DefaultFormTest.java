@@ -4,10 +4,9 @@ import com.dinner3000.BaseTest;
 import org.junit.Test;
 
 import javax.validation.ConstraintViolation;
-
 import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class DefaultFormTest extends BaseTest {
 
