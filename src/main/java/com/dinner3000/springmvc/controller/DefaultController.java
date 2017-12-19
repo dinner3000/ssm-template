@@ -50,6 +50,9 @@ public class DefaultController extends BaseController{
     @RequestMapping("submitForm1")
     @ResponseBody
     public Object submitForm1(@Valid DefaultForm form){
+
+        logger.info("###DefaultController - submitForm1()");
+
         AjaxResponse response = new AjaxResponse();
 
         DefaultModel model = DefaultModel.ConvertFromDefaultForm(form);
@@ -68,6 +71,9 @@ public class DefaultController extends BaseController{
     @RequestMapping("submitForm2")
     @ResponseBody
     public Object submitForm2(@Valid @RequestBody DefaultForm form){
+
+        logger.info("###DefaultController - submitForm2()");
+
         AjaxResponse response = new AjaxResponse();
 
         DefaultModel model = DefaultModel.ConvertFromDefaultForm(form);

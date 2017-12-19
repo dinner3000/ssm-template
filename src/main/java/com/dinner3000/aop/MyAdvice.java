@@ -2,6 +2,8 @@ package com.dinner3000.aop;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -9,25 +11,27 @@ import javax.servlet.http.HttpServletRequest;
 
 public class MyAdvice {
 
+    private Logger logger = LoggerFactory.getLogger(getClass());
+
     public void before(JoinPoint joinPoint){
-        System.out.println("###MyAdvice - before()");
+        logger.debug("###MyAdvice - before()");
     }
 
     public void after(JoinPoint joinPoint){
-        System.out.println("###MyAdvice - after()");
+        logger.debug("###MyAdvice - after()");
     }
 
     public Object around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        System.out.println("###MyAdvice - around() - before");
+        logger.debug("###MyAdvice - around() - before");
         HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 
         Object retVal = proceedingJoinPoint.proceed();
 
-        System.out.println("###MyAdvice - around() - after");
+        logger.debug("###MyAdvice - around() - after");
         return retVal;
     }
 
     public void afterReturning(JoinPoint joinPoint, Object retVal){
-        System.out.println("###MyAdvice - afterReturning()");
+        logger.debug("###MyAdvice - afterReturning()");
     }
 }

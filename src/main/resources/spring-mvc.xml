@@ -23,13 +23,32 @@
         <property name="suffix" value=".jsp"></property>
     </bean>
 
-    <!--    <mvc:interceptors>
-            <mvc:interceptor>
-                <mvc:mapping path="/*"/>
-                <bean class="MyInterceptor"/>
-            </mvc:interceptor>
-        </mvc:interceptors>-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/*"/>
+            <bean class="com.dinner3000.springmvc.interceptor.MyInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
+    <import resource="spring-aop.xml"/>
+<!--    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.json.GsonHttpMessageConverter">
+                    <property name="supportedMediaTypes">
+                        <list>
+                            <value>text/html;charset=UTF-8</value>
+                        </list>
+                    </property>
+                </bean>
+            </list>
+        </property>
+        <property name="responseBodyAdvice">
+            <list>
+                <bean class="com.dinner3000.springmvc.advice.MyResponseBodyAdvice"/>
+            </list>
+        </property>
+    </bean>-->
     <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>-->
 
     <!--    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
@@ -41,13 +60,6 @@
                     <bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter"/>
                     <bean class="org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter"/>
                     <bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"/>
-                    <bean class="org.springframework.http.converter.json.GsonHttpMessageConverter">
-                        <property name="supportedMediaTypes">
-                            <list>
-                                <value>text/html;charset=UTF-8</value>
-                            </list>
-                        </property>
-                    </bean>
                     <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                         <property name="supportedMediaTypes">
                             <list>
@@ -57,14 +69,7 @@
                     </bean>
                 </list>
             </property>
-            <property name="responseBodyAdvice">
-                <list>
-                    <bean class="MyResponseBodyAdvice"/>
-                </list>
-            </property>
         </bean>-->
-
-    <!--<bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator" />-->
 
     <mvc:resources location="/*.html" mapping="/**.html"/>
     <mvc:resources location="/css/*" mapping="/css/**"/>

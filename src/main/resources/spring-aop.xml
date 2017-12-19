@@ -8,17 +8,17 @@
             http://www.springframework.org/schema/aop/spring-aop.xsd
 ">
 
-    <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
 
-    <!--<bean id="myAdvice" class="MyAdvice"/>-->
+    <bean id="myAdvice" class="com.dinner3000.aop.MyAdvice"/>
     <aop:config>
-<!--        <aop:pointcut id="target" expression="execution(* com.dinner3000.demo.respbody.controller..*(..))"></aop:pointcut>
+        <aop:pointcut id="target" expression="execution(* com.dinner3000.springmvc.controller..*(..))"></aop:pointcut>
         <aop:aspect id="" ref="myAdvice">
             <aop:before method="before" pointcut-ref="target"></aop:before>
             <aop:after method="after" pointcut-ref="target"></aop:after>
             <aop:around method="around" pointcut-ref="target"></aop:around>
             <aop:after-returning method="afterReturning" pointcut-ref="target" returning="retVal"></aop:after-returning>
-        </aop:aspect>-->
+        </aop:aspect>
     </aop:config>
 
 </beans>
