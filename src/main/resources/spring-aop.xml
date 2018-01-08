@@ -10,6 +10,30 @@
 
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
+    <bean id="ajaxControllerLogAdvice" class="com.dinner3000.springmvc.aop.WebControllerLogAdvice"/>
+    <aop:config>
+        <aop:pointcut id="ajaxControllerLogPointcut" expression="execution(* com.dinner3000.springmvc.controller..*(..)) and @annotation(com.dinner3000.springmvc.aop.WebControllerLog)"></aop:pointcut>
+        <aop:aspect id="ajaxControllerResponseBodyAspect" ref="ajaxControllerLogAdvice">
+            <!--<aop:before method="before" pointcut-ref="ajaxControllerLogPointcut"></aop:before>-->
+            <aop:around method="around" pointcut-ref="ajaxControllerLogPointcut"></aop:around>
+            <!--<aop:after-returning method="afterReturning" pointcut-ref="ajaxControllerLogPointcut" returning="retVal"></aop:after-returning>-->
+            <!--<aop:after method="after" pointcut-ref="ajaxControllerLogPointcut"></aop:after>-->
+            <aop:after-throwing method="afterThrowing" pointcut-ref="ajaxControllerLogPointcut" throwing="e"></aop:after-throwing>
+        </aop:aspect>
+    </aop:config>
+
+    <bean id="ajaxControllerResponseBodyAdvice" class="com.dinner3000.springmvc.aop.WebControllerResponseBodyAdvice"/>
+    <aop:config>
+        <aop:pointcut id="ajaxControllerResponseBodyPointcut" expression="execution(* com.dinner3000.springmvc.controller..*(..))"></aop:pointcut>
+        <aop:aspect id="ajaxControllerResponseBodyAspect" ref="ajaxControllerResponseBodyAdvice">
+            <!--<aop:before method="before" pointcut-ref="ajaxControllerResponseBodyPointcut"></aop:before>-->
+            <aop:around method="around" pointcut-ref="ajaxControllerResponseBodyPointcut"></aop:around>
+            <!--<aop:after-returning method="afterReturning" pointcut-ref="ajaxControllerResponseBodyPointcut" returning="retVal"></aop:after-returning>-->
+            <!--<aop:after method="after" pointcut-ref="ajaxControllerResponseBodyPointcut"></aop:after>-->
+            <!--<aop:after-throwing method="afterThrowing" pointcut-ref="ajaxControllerResponseBodyPointcut" throwing="e"></aop:after-throwing>-->
+        </aop:aspect>
+    </aop:config>
+
     <bean id="myAdvice" class="com.dinner3000.aop.MyAdvice"/>
     <aop:config>
         <aop:pointcut id="target" expression="execution(* com.dinner3000.springmvc.controller..*(..))"></aop:pointcut>
