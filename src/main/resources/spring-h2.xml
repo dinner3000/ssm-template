@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/jdbc
+        http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+">
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
+        <constructor-arg>
+            <bean class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+                <property name="driverClass" value="${jdbc.driver}" />
+                <property name="url" value="${jdbc.url}" />
+                <property name="username" value="${jdbc.user}" />
+                <property name="password" value="${jdbc.pass}" />
+            </bean>
+        </constructor-arg>
+    </bean>
+    <jdbc:initialize-database data-source="dataSource">
+        <jdbc:script location="classpath:init-test.sql" encoding="UTF-8"/>
+    </jdbc:initialize-database>
+
+    <!-- provides a H2 console to look into the db if necessary -->
+    <bean id="org.h2.tools.Server-WebServer" class="org.h2.tools.Server"
+          factory-method="createWebServer" depends-on="dataSource"
+          init-method="start" lazy-init="false">
+        <constructor-arg value="-web,-webPort,11111" />
+    </bean>
+</beans>
