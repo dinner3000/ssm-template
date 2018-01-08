@@ -31,10 +31,7 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
-<<<<<<< HEAD
-=======
     <import resource="spring-validator.xml"/>
->>>>>>> master
     <import resource="spring-aop.xml"/>
 <!--    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <property name="messageConverters">

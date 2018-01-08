@@ -2,10 +2,7 @@ package com.dinner3000.service;
 
 import com.dinner3000.BaseTest;
 import com.dinner3000.model.Info;
-<<<<<<< HEAD
-=======
 import com.dinner3000.service.impl.DefaultService;
->>>>>>> master
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
